@@ -1,13 +1,9 @@
-const http = require(`http`)
-const porta = process.env.PORT
-const fs = require('fs')
+const express = require('express')
+const rotas = require('./rotas')
+const porta = process.env.PORT || 3000
 
-const servidor = http.createServer((req, res) => {
-  fs.readFile('teste.html', (err,arquivo) => {
-    res.writeHead(200, {'Content-Type':'text/html'})
-    res.write(arquivo)
-    return res.end()
-  })
-})
+const app = express()
 
-servidor.listen(porta, () => {console.log('Servidor Rodando')})
+app.use('/', rotas)
+
+app.listen(porta, ()=>{console.log('Rodando!')})
