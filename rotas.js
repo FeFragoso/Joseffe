@@ -1,5 +1,8 @@
 const express = require('express')
+const path = require('path')
 const rotas = express.Router()
+
+rotas.use(express.static("front"));
 
 let mapaSite = [
   {'Spolaor': 'consult', 'info': 'Faz consultoria para empresas!'},
@@ -9,7 +12,7 @@ let mapaSite = [
 ]
 
 rotas.get('/', (req, res)=> {
-  res.send('Spolaor Company')
+  res.sendFile(path.join(__dirname, '/front/home.html'))
 })
 
 rotas.get('/:id', (req, res)=> {
