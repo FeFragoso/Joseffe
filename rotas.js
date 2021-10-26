@@ -20,9 +20,7 @@ rotas.get('/:id', (req, res)=> {
   const infoPagina = mapaSite.find(i=>i.Spolaor == id)
 
   if(!infoPagina) {
-    res.status(404).json({
-      erro: 'Página não encontrada!', paginaPesquisada: id
-    })
+    res.sendFile(path.join(__dirname, '/front/404.html'))
   }
   else {
     res.status(200).json(infoPagina)
